@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   Button,
   CardImg,
   CardTitle,
-  CardText,
   CardDeck,
   CardSubtitle,
   CardBody
 } from "reactstrap";
-import { graphql, StaticQuery } from "gatsby";
+import { graphql, StaticQuery, Link } from "gatsby";
 
 const CardDecks = () => {
   return (
@@ -40,8 +39,15 @@ const CardDecks = () => {
                   <CardBody>
                     <CardTitle></CardTitle>
                     <CardSubtitle>{result.title}</CardSubtitle>
-                    <CardText>{result.description}</CardText>
-                    <Button>Button</Button>
+                    <Link
+                      to="/jobdescription"
+                      state={{
+                        title: result.title,
+                        description: result.description
+                      }}
+                    >
+                      <Button>Apply</Button>
+                    </Link>
                   </CardBody>
                 </Card>
               );
