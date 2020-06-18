@@ -7,6 +7,10 @@ module.exports = {
       options: {
         path: `./src/data/`
       }
+    },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/description/*`] }
     }
   ]
 };

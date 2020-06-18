@@ -18,6 +18,7 @@
     "formik": "^2.1.4",
     "gatsby": "^2.23.4",
     "gatsby-cli": "^2.12.46",
+    "gatsby-plugin-create-client-paths": "^2.3.4",
     "gatsby-plugin-netlify-cms": "^4.3.5",
     "gatsby-source-filesystem": "^2.3.11",
     "gatsby-transformer-json": "^2.4.5",

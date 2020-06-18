@@ -1,17 +1,39 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Layout from "../components/Layout";
 import ApplyJob from "../components/ApplyJob";
-const Description = ({ location }) => {
-  let title = location.state ? location.state.title : null;
-  let description = location.state ? location.state.description : null;
+import { graphql, StaticQuery } from "gatsby";
+const Description = (props) => {
   return (
-    <Layout>
-      <Fragment>
-        <h1>{title}</h1>
-        <p>{description}</p>
-        <ApplyJob title={title} children={description} />
-      </Fragment>
-    </Layout>
+    <StaticQuery
+      query={graphql`
+        query descrQuery {
+          dataJson {
+            jobs {
+              title
+              description
+            }
+          }
+        }
+      `}
+      render={(data) => (
+        <Layout>
+          {data.dataJson.jobs.map((result, index) => {
+            if (props["*"] === result.title) {
+              return (
+                <div key={"header-" + index}>
+                  <h1>{result.title}</h1>
+                  <p>{result.description}</p>
+                  <ApplyJob
+                    title={result.title}
+                    description={result.description}
+                  />
+                </div>
+              );
+            }
+          })}
+        </Layout>
+      )}
+    />
   );
 };
 

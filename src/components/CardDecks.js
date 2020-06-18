@@ -39,13 +39,7 @@ const CardDecks = () => {
                   <CardBody>
                     <CardTitle>{result.title}</CardTitle>
                     <CardSubtitle></CardSubtitle>
-                    <Link
-                      to="/description"
-                      state={{
-                        title: result.title,
-                        description: result.description
-                      }}
-                    >
+                    <Link to={`/description/${result.title}`}>
                       <Button color="success">Apply</Button>
                     </Link>
                   </CardBody>
