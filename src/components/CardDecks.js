@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   Button,
@@ -8,7 +8,7 @@ import {
   CardSubtitle,
   CardBody
 } from "reactstrap";
-import { graphql, StaticQuery, Link } from "gatsby";
+import { Link, graphql, StaticQuery } from "gatsby";
 
 const CardDecks = () => {
   return (
@@ -37,16 +37,16 @@ const CardDecks = () => {
                     alt="Card image cap"
                   />
                   <CardBody>
-                    <CardTitle></CardTitle>
-                    <CardSubtitle>{result.title}</CardSubtitle>
+                    <CardTitle>{result.title}</CardTitle>
+                    <CardSubtitle></CardSubtitle>
                     <Link
-                      to="/jobdescription"
+                      to="/description"
                       state={{
                         title: result.title,
                         description: result.description
                       }}
                     >
-                      <Button>Apply</Button>
+                      <Button color="success">Apply</Button>
                     </Link>
                   </CardBody>
                 </Card>

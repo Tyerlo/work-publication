@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
-import Layout from "../components/layout";
-import { Button } from "reactstrap";
-import Modalen from "../components/Modal";
-const jobdescription = ({ location }) => {
+import Layout from "./layout";
+import Modalen from "./Modal";
+const Description = ({ location }) => {
   return (
     <Layout>
       <Fragment>
@@ -17,4 +16,4 @@ const jobdescription = ({ location }) => {
   );
 };
 
-export default jobdescription;
+export default Description;
