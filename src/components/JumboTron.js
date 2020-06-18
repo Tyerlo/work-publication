@@ -10,7 +10,6 @@ const JumboTron = () => {
         </h1>
         <p className="lead">Find a job that suits you!</p>
         <hr className="my-2" />
-
         <p className="lead">
           <Button color="primary">Available jobs</Button>
         </p>
