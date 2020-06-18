@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import CardDecks from "../components/CardDecks";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import JumboTron from "../components/JumboTron";
 const Home = () => {
   return (
