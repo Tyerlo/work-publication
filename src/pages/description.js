@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import ApplyJob from "../components/ApplyJob";
 const Description = ({ location }) => {
   let title = location.state ? location.state.title : null;
