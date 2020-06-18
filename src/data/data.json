@@ -1,0 +1,24 @@
+{
+  "page": {
+    "title": "Work-place",
+    "author": "Thomas Borgstrom"
+  },
+  "jobs": [
+    {
+      "description": " Tidigare erfarenhet och goda kunskaper inom systemtest och funktionella tester, där du utfört dessa självständigt.",
+      "title": "System developer"
+    },
+    {
+      "description": "We want 10 years of experience and also that you can work from abroad",
+      "title": "UX designer"
+    },
+    {
+      "description": "We want 10 years of experience and also that you can work from abroad",
+      "title": "Backend developer"
+    },
+    {
+      "description": "We want 10 years of experience and also that you can work from abroad",
+      "title": "Frontend developer"
+    }
+  ]
+}
