@@ -1,5 +1,6 @@
 import React from "react";
 import { Jumbotron, Button } from "reactstrap";
+import { Link } from "gatsby";
 
 const JumboTron = () => {
   return (
@@ -11,7 +12,9 @@ const JumboTron = () => {
         <p className="lead">Find a job that suits you!</p>
         <hr className="my-2" />
         <p className="lead">
-          <Button color="primary">Available jobs</Button>
+          <Link to="/jobs">
+            <Button color="primary">Available jobs</Button>
+          </Link>
         </p>
       </Jumbotron>
     </div>

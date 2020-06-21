@@ -15,11 +15,6 @@ const Modalen = (props) => {
         <ModalBody>
           <Forms />
         </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Send
-          </Button>
-        </ModalFooter>
       </Modal>
     </Fragment>
   );

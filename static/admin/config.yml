@@ -6,12 +6,14 @@ media_folder: static/assets
 public_folder: assets
 
 collections:
-  - name: blog
-    label: Blog
-    folder: blog
+  - name: jobs
+    label: Jobs
+    folder: content/jobs
     create: true
+    editor:
+      preview: true
     fields:
       - { name: path, label: Path }
-      - { name: date, label: Date, widget: datetime }
+      - { name: date, label: Date, widget: datetime, required: false }
       - { name: title, label: Title }
       - { name: body, label: Body, widget: markdown }
