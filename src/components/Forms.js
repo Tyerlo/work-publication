@@ -13,6 +13,7 @@ import {
 import { navigate } from "gatsby-link";
 import * as Yup from "yup";
 import { useFormik, Field } from "formik";
+import DropZone from "./DropZone";
 
 function encode(data) {
   return Object.keys(data)
@@ -22,7 +23,8 @@ function encode(data) {
 const initialValues = {
   firstName: "",
   lastName: "",
-  email: ""
+  email: "",
+  textarea: ""
 };
 
 const validationSchema = Yup.object({
@@ -30,8 +32,10 @@ const validationSchema = Yup.object({
   lastName: Yup.string().required("Last name is required!"),
   email: Yup.string()
     .email("Invalid email address")
-    .required("Email is required!")
+    .required("Email is required!"),
+  textarea: Yup.string().max(1000, "Must be max 1000 characters")
 });
+
 const Forms = () => {
   const formik = useFormik({
     initialValues,
@@ -43,6 +47,13 @@ const Forms = () => {
 
   const [state, setState] = useState({});
 
+  const handleAttachement = (e) => {
+    setState({ ...state, [e.target.name]: e.target.files[0] });
+  };
+
+  const handleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
   const handleSubmit = () => {
     fetch("/", {
       method: "POST",
@@ -64,8 +75,14 @@ const Forms = () => {
       action="/thanks"
       onSubmit={formik.handleSubmit}
     >
-      {/* <Field type="hidden" name="application-form" />
-      <Field type="hidden" name="bot-field" /> */}
+      {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+      <input type="hidden" name="form-name" value="file-upload" />
+      <p hidden>
+        <label>
+          Don’t fill this out:{" "}
+          <input name="bot-field" onChange={handleChange} />
+        </label>
+      </p>
       <Row form>
         <Col md={6}>
           <FormGroup>
@@ -120,6 +137,29 @@ const Forms = () => {
               </div>
             ) : null}
           </FormGroup>
+        </Col>
+        <Col md={12}>
+          <FormGroup>
+            <Label>Upload CV</Label>
+            <DropZone />
+          </FormGroup>
+        </Col>
+        <Col md={12}>
+          <Label>Personal letter(Optional)</Label>
+          <Input
+            maxLength="1000"
+            type="textarea"
+            name="textarea"
+            onChange={formik.handleChange}
+            value={formik.values.textarea}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.textarea && formik.touched.textarea ? (
+            <div className="text-danger">
+              <i className="fas fa-times mr-1" />
+              {formik.errors.textarea}
+            </div>
+          ) : null}
         </Col>
       </Row>
       <ModalFooter>

@@ -23,7 +23,6 @@ const blogTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <Link to="/">Back to Blogs</Link>
       <h1>{title}</h1>
       <p>
         Posted by {author} on {date}

@@ -10,7 +10,7 @@ const Modalen = (props) => {
       <Button color="success" onClick={toggle}>
         Send application
       </Button>
-      <Modal isOpen={modal} toggle={toggle}>
+      <Modal isOpen={modal} toggle={toggle} size="lg">
         <ModalHeader toggle={toggle}>{props.title}</ModalHeader>
         <ModalBody>
           <Forms />
