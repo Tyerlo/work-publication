@@ -57,7 +57,7 @@ const Forms = () => {
           })
         })
           .then(() => {
-            navigate("action");
+            navigate("/thanks");
             actions.resetForm();
           })
           .catch((error) => alert(error))
@@ -79,7 +79,7 @@ const Forms = () => {
             method="post"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            action="/thanks/"
+            action="/thanks"
             onSubmit={handleSubmit}
           >
             {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
