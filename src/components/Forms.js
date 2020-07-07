@@ -72,6 +72,9 @@ const Forms = () => {
           data-netlify-honeypot="bot-field"
           onSubmit={props.handleSubmit}
         >
+          {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+          <input type="hidden" name="form-name" value="application" />
+
           <Row form>
             <Col md={6}>
               <FormGroup>
