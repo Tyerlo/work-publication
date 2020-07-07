@@ -48,7 +48,6 @@ const Forms = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={(values, actions) => {
-        console.log(values);
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -65,121 +64,102 @@ const Forms = () => {
           .finally(() => actions.setSubmitting(false));
       }}
       validationSchema={validationSchema}
-      render={({
-        values,
-        handleSubmit,
-        setFieldValue,
-        handleChange,
-        handleBlur,
-        errors,
-        touched
-      }) => {
-        return (
-          <Form
-            name="application"
-            method="post"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-            action="/thanks"
-            onSubmit={handleSubmit}
-          >
-            {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-            <input type="hidden" name="form-name" value="application" />
-            <p hidden>
-              <label>
-                Don’t fill this out:{" "}
-                <input name="bot-field" onChange={handleChange} />
-              </label>
-            </p>
-            <Row form>
-              <Col md={6}>
-                <FormGroup>
-                  <Label>Firstname</Label>
-                  <Input
-                    type="text"
-                    name="firstName"
-                    onChange={handleChange}
-                    value={values.firstName}
-                    onBlur={handleBlur}
-                  />
-                  {errors.firstName && touched.firstName ? (
-                    <div className="text-danger">
-                      <i className="fas fa-times mr-1" />
-                      {errors.firstName}
-                    </div>
-                  ) : null}
-                </FormGroup>
-              </Col>
-              <Col md={6}>
-                <FormGroup>
-                  <Label>Last name</Label>
-                  <Input
-                    type="text"
-                    name="lastName"
-                    onChange={handleChange}
-                    value={values.lastName}
-                    onBlur={handleBlur}
-                  />
-                  {errors.lastName && touched.lastName ? (
-                    <div className="text-danger">
-                      <i className="fas fa-times mr-1" />
-                      {errors.lastName}
-                    </div>
-                  ) : null}
-                </FormGroup>
-              </Col>
-              <Col md={6}>
-                <FormGroup>
-                  <Label>Email</Label>
-                  <Input
-                    type="email"
-                    name="email"
-                    onChange={handleChange}
-                    value={values.email}
-                    onBlur={handleBlur}
-                  />
-                  {errors.email && touched.email ? (
-                    <div className="text-danger">
-                      <i className="fas fa-times mr-1" />
-                      {errors.email}
-                    </div>
-                  ) : null}
-                </FormGroup>
-              </Col>
-              <Col md={6}>
-                <FormGroup>
-                  <Label>PhoneNumber</Label>
-                  <Input
-                    type="text"
-                    name="phone"
-                    onChange={handleChange}
-                    value={values.phone}
-                    onBlur={handleBlur}
-                  />
-                  {errors.phone && touched.phone ? (
-                    <div className="text-danger">
-                      <i className="fas fa-times mr-1" />
-                      {errors.phone}
-                    </div>
-                  ) : null}
-                </FormGroup>
-              </Col>
-              <Col md={12}>
-                <FormGroup>
-                  <Label>Upload CV</Label>
-                  <UploadFiles setFieldValue={setFieldValue} />
-                </FormGroup>
-              </Col>
-            </Row>
-            <ModalFooter>
-              <Button type="submit" color="primary">
-                Send
-              </Button>
-            </ModalFooter>
-          </Form>
-        );
-      }}
-    />
+    >
+      {(props) => (
+        <Form
+          name="application"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          onSubmit={props.handleSubmit}
+        >
+          <Row form>
+            <Col md={6}>
+              <FormGroup>
+                <Label>Firstname</Label>
+                <Input
+                  type="text"
+                  name="firstName"
+                  onChange={props.handleChange}
+                  value={props.values.firstName}
+                  onBlur={props.handleBlur}
+                />
+                {props.errors.firstName && props.touched.firstName ? (
+                  <div className="text-danger">
+                    <i className="fas fa-times mr-1" />
+                    {props.errors.firstName}
+                  </div>
+                ) : null}
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label>Last name</Label>
+                <Input
+                  type="text"
+                  name="lastName"
+                  onChange={props.handleChange}
+                  value={props.values.lastName}
+                  onBlur={props.handleBlur}
+                />
+                {props.errors.lastName && props.touched.lastName ? (
+                  <div className="text-danger">
+                    <i className="fas fa-times mr-1" />
+                    {props.errors.lastName}
+                  </div>
+                ) : null}
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label>Email</Label>
+                <Input
+                  type="email"
+                  name="email"
+                  onChange={props.handleChange}
+                  value={props.values.email}
+                  onBlur={props.handleBlur}
+                />
+                {props.errors.email && props.touched.email ? (
+                  <div className="text-danger">
+                    <i className="fas fa-times mr-1" />
+                    {props.errors.email}
+                  </div>
+                ) : null}
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label>PhoneNumber</Label>
+                <Input
+                  type="text"
+                  name="phone"
+                  onChange={props.handleChange}
+                  value={props.values.phone}
+                  onBlur={props.handleBlur}
+                />
+                {props.errors.phone && props.touched.phone ? (
+                  <div className="text-danger">
+                    <i className="fas fa-times mr-1" />
+                    {props.errors.phone}
+                  </div>
+                ) : null}
+              </FormGroup>
+            </Col>
+            <Col md={12}>
+              <FormGroup>
+                <Label>Upload CV</Label>
+                <UploadFiles setFieldValue={props.setFieldValue} />
+              </FormGroup>
+            </Col>
+          </Row>
+          <ModalFooter>
+            <Button type="submit" color="primary">
+              Send
+            </Button>
+          </ModalFooter>
+        </Form>
+      )}
+    </Formik>
   );
 };
 export default Forms;
