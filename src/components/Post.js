@@ -3,7 +3,6 @@ import { Link } from "gatsby";
 import {
   Card,
   CardBody,
-  CardDeck,
   CardImg,
   CardSubtitle,
   CardTitle,

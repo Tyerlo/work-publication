@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { useDropzone } from "react-dropzone";
-import JSZip from "jszip";
 import "./UploadFiles.css";
 import convertSize from "convert-size";
 import { FormText } from "reactstrap";
@@ -45,23 +44,6 @@ const DroppingFiles = (props) => {
       </li>
     );
   });
-
-  const handleDrop = (files) => {
-    const zip = new JSZip();
-
-    files.forEach((file) => zip.file(file.name, file));
-
-    zip.generateAsync({ type: "blob" }).then((blob) => {
-      const zippedFiles = new File([blob], "whatever.zip", {
-        lastModified: Date.now(),
-        type: "application/zip"
-      });
-
-      this.setState({
-        zippedFiles
-      });
-    });
-  };
 
   return (
     <section>

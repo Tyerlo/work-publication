@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
+import { Modal, ModalHeader, ModalBody, Button } from "reactstrap";
 import Forms from "./Forms";
 const Modalen = (props) => {
   const [modal, setModal] = useState(false);

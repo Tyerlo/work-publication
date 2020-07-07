@@ -28,23 +28,26 @@ const Forms = () => {
       .matches(phoneRegExp, "Please enter a valid phone number")
   });
 
-  const encodeData = (data) => {
-    const formData = new FormData();
-    Object.keys(data).map((key) => formData.append(key, data[key]));
-    return formData;
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, values) => {
     e.preventDefault();
     const form = e.target;
     fetch("/", {
       method: "POST",
-      data: encodeData({
-        "form-name": form.getAttribute("name"),
-        files: this.state.zippedFiles
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": form.getAttribute("application"),
+        ...values
       })
     })
-      .then(() => navigate("action"))
+      .then(() => navigate(form.getAttribute("action")))
       .catch((error) => alert(error));
   };
 
@@ -60,14 +63,7 @@ const Forms = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
-        console.log({
-          values,
-          files: values.files.map((file) => ({
-            fileName: file.name,
-            type: file.type,
-            size: `${file.size} bytes`
-          }))
-        });
+        handleSubmit(values);
       }}
       validationSchema={validationSchema}
       render={({
@@ -85,11 +81,11 @@ const Forms = () => {
             method="post"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            action="/thanks"
+            action="/thanks/"
             onSubmit={handleSubmit}
           >
             {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-            <Input type="hidden" name="form-name" value="application" />
+            <input type="hidden" name="form-name" value="application" />
             <p hidden>
               <label>
                 Don’t fill this out:{" "}
