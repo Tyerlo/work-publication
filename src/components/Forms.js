@@ -36,21 +36,6 @@ const Forms = () => {
       .join("&");
   };
 
-  const handleSubmit = (e, values) => {
-    e.preventDefault();
-    const form = e.target;
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": form.getAttribute("application"),
-        ...values
-      })
-    })
-      .then(() => navigate(form.getAttribute("action")))
-      .catch((error) => alert(error));
-  };
-
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -62,8 +47,21 @@ const Forms = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => {
-        handleSubmit(values);
+      onSubmit={(values, actions) => {
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode({
+            "form-name": "application",
+            ...values
+          })
+        })
+          .then(() => {
+            navigate("action");
+            actions.resetForm();
+          })
+          .catch((error) => alert(error))
+          .finally(() => actions.setSubmitting(false));
       }}
       validationSchema={validationSchema}
       render={({
