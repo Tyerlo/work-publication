@@ -66,8 +66,9 @@ const Forms = () => {
       validationSchema={validationSchema}
     >
       {(props) => (
-        <Form
+        <form
           name="application"
+          method="post"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           onSubmit={props.handleSubmit}
@@ -160,7 +161,7 @@ const Forms = () => {
               Send
             </Button>
           </ModalFooter>
-        </Form>
+        </form>
       )}
     </Formik>
   );
