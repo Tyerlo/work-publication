@@ -66,18 +66,17 @@ const Forms = () => {
       validationSchema={validationSchema}
     >
       {(props) => (
-        <form
+        <Form
           name="application"
           method="post"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           onSubmit={props.handleSubmit}
         >
-          {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-          <input type="hidden" name="form-name" value="application" />
-
           <Row form>
             <Col md={6}>
+              {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+              <input type="hidden" name="form-name" value="application" />
               <FormGroup>
                 <Label>Firstname</Label>
                 <Input
@@ -161,7 +160,7 @@ const Forms = () => {
               Send
             </Button>
           </ModalFooter>
-        </form>
+        </Form>
       )}
     </Formik>
   );
