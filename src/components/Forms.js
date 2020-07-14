@@ -75,8 +75,6 @@ const Forms = () => {
         >
           <Row form>
             <Col md={6}>
-              {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-              <input type="hidden" name="form-name" value="application" />
               <FormGroup>
                 <Label>Firstname</Label>
                 <Input

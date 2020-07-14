@@ -15,8 +15,11 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.1",
+    "@sendgrid/client": "^7.2.1",
+    "@sendgrid/mail": "^7.2.1",
     "bootstrap": "^4.5.0",
     "convert-size": "^1.0.9",
+    "dotenv": "^8.2.0",
     "formik": "^2.1.4",
     "gatsby": "^2.23.4",
     "gatsby-cli": "^2.12.46",

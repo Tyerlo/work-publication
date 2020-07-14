@@ -9,7 +9,7 @@ const DroppingFiles = (props) => {
   const MAX_SIZE = 2000000;
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
-      // setFieldValue("files", acceptedFiles);
+      setFieldValue("files", acceptedFiles);
     },
     multiple: true,
     maxSize: { MAX_SIZE },
