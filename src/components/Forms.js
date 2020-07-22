@@ -25,7 +25,8 @@ const Forms = () => {
       .required("Email is required!"),
     phone: Yup.string()
       .required("Phone number required")
-      .matches(phoneRegExp, "Please enter a valid phone number")
+      .matches(phoneRegExp, "Please enter a valid phone number"),
+    files: Yup.string().required("Files can't be empty").nullable(true)
   });
 
   const encode = (data) => {
@@ -48,6 +49,7 @@ const Forms = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={(values, actions) => {
+        console.log(values);
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -150,6 +152,12 @@ const Forms = () => {
               <FormGroup>
                 <Label>Upload CV</Label>
                 <UploadFiles setFieldValue={props.setFieldValue} />
+                {props.errors.files && props.touched.files ? (
+                  <div className="text-danger">
+                    <i className="fas fa-times mr-1" />
+                    {props.errors.files}
+                  </div>
+                ) : null}
               </FormGroup>
             </Col>
           </Row>
