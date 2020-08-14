@@ -11,18 +11,13 @@ module.exports = {
         name: `pages`
       }
     },
-    `gatsby-transformer-remark`
+    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-plugin-netlify-functions`,
+      options: {
+        functionsSrc: `${__dirname}/functions`,
+        functionsOutput: `${__dirname}/functions`
+      }
+    }
   ]
-  // ,
-  // developMiddleware: (app) => {
-  //   app.use(
-  //     "/.netlify/functions/",
-  //     proxy({
-  //       target: "http://localhost:9000",
-  //       pathRewrite: {
-  //         "/.netlify/functions/": ""
-  //       }
-  //     })
-  //   );
-  // }
 };

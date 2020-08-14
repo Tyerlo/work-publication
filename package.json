@@ -28,6 +28,7 @@
     "gatsby-cli": "^2.12.72",
     "gatsby-plugin-create-client-paths": "^2.3.4",
     "gatsby-plugin-netlify-cms": "^4.3.5",
+    "gatsby-plugin-netlify-functions": "0.0.3",
     "gatsby-source-filesystem": "^2.3.11",
     "gatsby-transformer-json": "^2.4.5",
     "gatsby-transformer-remark": "^2.8.16",

@@ -8,7 +8,7 @@ const aws = require("aws-sdk");
 const cors = require("cors")({ orign: true });
 
 exports.handler = async (request) => {
-  const { email, firstname, lastName, phone, files } = JSON.parse(request);
+  const { email, firstname, lastName, phone, files } = request;
   const transporter = nodemailer.createTransport({
     ses: new aws.SES({
       apiVersion: "2010-12-01"
