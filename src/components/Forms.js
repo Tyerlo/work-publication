@@ -13,7 +13,7 @@ import { navigate } from "gatsby-link";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import UploadFiles from "./UploadFiles";
-
+import axios from "axios";
 const Forms = () => {
   const phoneRegExp = /^[+0-9]*$/;
 
@@ -29,14 +29,6 @@ const Forms = () => {
     files: Yup.string().required("Files can't be empty").nullable(true)
   });
 
-  const encode = (data) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-      )
-      .join("&");
-  };
-
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -49,21 +41,23 @@ const Forms = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={(values, actions) => {
-        console.log(values);
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode({
-            "form-name": "application",
-            ...values
+        axios
+          .post("/.netflify/functions/ses-send-email", {
+            values
           })
-        })
-          .then(() => {
-            navigate("/thanks");
-            actions.resetForm();
+          .then((result) => {
+            let data = JSON.parse(result.config.data);
+            console.log(data);
+            return data;
           })
-          .catch((error) => alert(error))
-          .finally(() => actions.setSubmitting(false));
+          // .then(() => {
+          //   navigate("/thanks");
+          //   actions.resetForm();
+          // })
+          .catch((error) => {
+            console.log(error);
+            navigate("/error");
+          });
       }}
       validationSchema={validationSchema}
     >
@@ -151,7 +145,10 @@ const Forms = () => {
             <Col md={12}>
               <FormGroup>
                 <Label>Upload CV</Label>
-                <UploadFiles setFieldValue={props.setFieldValue} />
+                <UploadFiles
+                  setFieldValue={props.setFieldValue}
+                  files={props.values.files}
+                />
                 {props.errors.files && props.touched.files ? (
                   <div className="text-danger">
                     <i className="fas fa-times mr-1" />

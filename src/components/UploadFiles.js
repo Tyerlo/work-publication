@@ -4,7 +4,7 @@ import "./UploadFiles.css";
 import convertSize from "convert-size";
 import { FormText } from "reactstrap";
 const DroppingFiles = (props) => {
-  const { setFieldValue } = props;
+  const { setFieldValue, files } = props;
 
   const MAX_SIZE = 2000000;
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
@@ -13,7 +13,8 @@ const DroppingFiles = (props) => {
     },
     multiple: true,
     maxSize: { MAX_SIZE },
-    accept: "application/pdf, application/msword"
+    accept:
+      "application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
   });
 
   const ErrorMessage = ({ children }) => (
@@ -47,12 +48,12 @@ const DroppingFiles = (props) => {
 
   return (
     <section>
-      <FormText color="black"> Max size 2MB</FormText>
+      <FormText color="muted"> Accepted files: docx, doc and pdf</FormText>
       <div {...getRootProps({ className: "dropzone" })}>
         <input {...getInputProps()} name="files" />
         <p>Drag n' drop some files here, or click to select files</p>
       </div>
-
+      <FormText color="muted">Max size 2MB</FormText>
       <aside>
         <h5>Files</h5>
 

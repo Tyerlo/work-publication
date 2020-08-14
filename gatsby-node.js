@@ -1,5 +1,11 @@
 const path = require("path");
-
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: "empty"
+    }
+  });
+};
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
   const postTemplate = path.resolve("src/templates/blogTemplate.js");

@@ -13,4 +13,16 @@ module.exports = {
     },
     `gatsby-transformer-remark`
   ]
+  // ,
+  // developMiddleware: (app) => {
+  //   app.use(
+  //     "/.netlify/functions/",
+  //     proxy({
+  //       target: "http://localhost:9000",
+  //       pathRewrite: {
+  //         "/.netlify/functions/": ""
+  //       }
+  //     })
+  //   );
+  // }
 };
