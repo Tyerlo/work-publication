@@ -27,25 +27,18 @@ exports.handler = async (request) => {
 
   try {
     Object.keys(files).map((key, index) => {
-      transporter.sendMail(
-        {
-          attachments: [
-            {
-              filename: files[key].name,
-              content: files[key].content
-            }
-          ],
-          from: email ? email : null,
-          to: "thomasalfredo@gmail.com",
-          subject: "Message",
-          text: "Testing test"
-        },
-        (error, info) => {
-          console.log("error", error);
-          console.log("envelope", info.envelope);
-          console.log("MessageId", info.messageId);
-        }
-      );
+      transporter.sendMail({
+        attachments: [
+          {
+            filename: files[key].name,
+            content: files[key].content
+          }
+        ],
+        from: email ? email : null,
+        to: "thomasalfredo@gmail.com",
+        subject: "Message",
+        text: "Testing test"
+      });
     });
   } catch (error) {
     throw error;
