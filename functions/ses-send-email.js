@@ -3,7 +3,7 @@ require("dotenv").config();
 const nodemailer = require("nodemailer");
 const aws = require("aws-sdk");
 // configure AWS SDK
-aws.config.loadFromPath("../config.json");
+aws.config.loadFromPath(process.cwd() + "./../config.json");
 
 const cors = require("cors")({ orign: true });
 
