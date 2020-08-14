@@ -9,6 +9,7 @@ const cors = require("cors")({ orign: true });
 
 exports.handler = async (request) => {
   const { email, firstname, lastName, phone, files } = request;
+  console.log(request);
   const transporter = nodemailer.createTransport({
     ses: new aws.SES({
       apiVersion: "2010-12-01"
@@ -26,18 +27,25 @@ exports.handler = async (request) => {
 
   try {
     Object.keys(files).map((key, index) => {
-      transporter.sendMail({
-        attachments: [
-          {
-            filename: files[key].name,
-            content: files[key].content
-          }
-        ],
-        from: email,
-        to: "thomasalfredo@gmail.com",
-        subject: "Message",
-        text: "Testing test"
-      });
+      transporter.sendMail(
+        {
+          attachments: [
+            {
+              filename: files[key].name,
+              content: files[key].content
+            }
+          ],
+          from: email,
+          to: "thomasalfredo@gmail.com",
+          subject: "Message",
+          text: "Testing test"
+        },
+        (error, info) => {
+          console.log("error", error);
+          console.log("envelope", info.envelope);
+          console.log("MessageId", info.messageId);
+        }
+      );
     });
   } catch (error) {
     throw error;
