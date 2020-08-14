@@ -35,7 +35,7 @@ exports.handler = async (request) => {
               content: files[key].content
             }
           ],
-          from: email,
+          from: email ? email : null,
           to: "thomasalfredo@gmail.com",
           subject: "Message",
           text: "Testing test"
