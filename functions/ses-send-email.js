@@ -26,19 +26,19 @@ exports.handler = async (request) => {
   });
 
   try {
-    Object.keys(files).map((key, index) => {
-      transporter.sendMail({
-        attachments: [
-          {
-            filename: files[key].name,
-            content: files[key].content
-          }
-        ],
-        from: email ? email : null,
-        to: "thomasalfredo@gmail.com",
-        subject: "Message",
-        text: "Testing test"
-      });
+    // Object.keys(files).map((key, index) => {
+    transporter.sendMail({
+      // attachments: [
+      //   {
+      //     filename: files[key].name,
+      //     content: files[key].content
+      //   }
+      // ],
+      from: "thomasalfredo@gmail.com",
+      to: "thomasalfredo@gmail.com",
+      subject: "Message",
+      text: "Testing test"
+      // });
     });
   } catch (error) {
     throw error;
